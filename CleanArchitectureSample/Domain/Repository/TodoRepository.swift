@@ -6,3 +6,9 @@
 //
 
 import Foundation
+
+protocol TodoRepository {
+    func fetchTodos() -> [Todo]
+    func addTodo(title: String)
+    func toggleTodo(id: UUID)
+}
