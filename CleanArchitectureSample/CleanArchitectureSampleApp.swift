@@ -11,7 +11,14 @@ import SwiftUI
 struct CleanArchitectureSampleApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            let localTodoDataSource = LocalTodoDataSource()
+            let todoRepository = TodoRepositoryImpl(localDataSource: localTodoDataSource)
+            let addTodoUsecase = AddTodoUseCase(repository: todoRepository)
+            let getTodoUsecase = GetTodoUseCase(repository: todoRepository)
+            let toggleTodoUsecase = ToggleTodoUseCase(repository: todoRepository)
+            let viewModel = TodoViewModel(getTodoUseCase: getTodoUsecase, addTodoUseCase: addTodoUsecase, toggleTodoUseCase: toggleTodoUsecase)
+            
+            TodoListView(viewModel: viewModel)
         }
     }
 }
