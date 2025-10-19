@@ -6,3 +6,9 @@
 //
 
 import Foundation
+
+struct Todo: Identifiable {
+    let id: UUID
+    let title: String
+    let isComplete: Bool
+}
